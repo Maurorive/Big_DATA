@@ -120,6 +120,8 @@ El pipeline sigue una arquitectura medallón en Databricks:
 
 ## 4. Pipeline de Ingesta de Datos
 
+<img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/dd5c96a0-d721-4b2f-aa5d-fae91a08f9bd" />
+
 ### Flujo de datos
 
 <img width="752" height="447" alt="image" src="https://github.com/user-attachments/assets/0be1e559-35d4-4971-a289-be520b8b95bc" />
