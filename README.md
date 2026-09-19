@@ -31,10 +31,17 @@ En la metodología DDMRP, cada SKU se clasifica en una zona de buffer representa
 
 ### Objetivos:
 
-Construir un modelo que permita identificar los productos en sobrestock o que se encuentren agotados en los 30 puntos de venta.
-Replantear el abastecimiento que realiza la empresa en los 30 puntos de venta para llevarlos a un nivel más óptimo.
-Determinar qué alerta del buffer arrojan los productos nuevos que se decidan lanzar a la venta.
-Comprobar si el pronóstico que el departamento de planeación genera para la empresa es correcto.
+**Objetivo General**
+
+-Construir un modelo que permita identificar los productos en sobrestock o que se encuentren agotados en los 30 puntos de venta.
+
+**Objetivos Especificos**
+
+-Replantear el abastecimiento que realiza la empresa en los 30 puntos de venta para llevarlos a un nivel más óptimo.
+
+-Determinar qué alerta del buffer arrojan los productos nuevos que se decidan lanzar a la venta.
+
+-Comprobar si el pronóstico que el departamento de planeación genera para la empresa es correcto.
 
 ### Solución
 Construir un modelo de clasificación supervisado que aprende de 45,000 registros históricos (30 tiendas × 1,500 SKUs) y predice el Color de Buffer de cada combinación SKU-tienda usando variables operativas, de inventario y económicas.
@@ -52,14 +59,19 @@ La implementación de un modelo de clasificación automática del Color de Buffe
 #### Antes del modelo:
 
 -Clasificación manual de buffers SKU por SKU con reglas fijas
+
 -Análisis reactivo — se actúa solo cuando el inventario ya llegó a ROJO o AZUL
+
 -Procesos repetitivos de revisión de topes y niveles de stock
+
 -Decisiones de reabastecimiento basadas en criterio subjetivo del operario
 
 #### Con el modelo en Databricks:
 
 -La clasificación del Color de Buffer se automatiza mediante Machine Learning (Random Forest)
+
 -Se reducen tiempos de análisis y carga operativa del equipo de inventario
+
 -El sistema predice el color para 1,500 SKUs × 30 tiendas en una sola inferencia
 
 Esto implica una disminución significativa de costos operativos y mayor eficiencia en la gestión de inventario.
@@ -70,13 +82,17 @@ El dataset revela que un porcentaje significativo de productos presenta -Sobre_S
 #### El análisis muestra que:
 
 -El Costo_Inventario varía desde COP 23,991 hasta COP 53,618,544 por SKU-tienda
+
 -Sobre_Stock_Unid es la variable más determinante del color de buffer (correlación 0.72 con el target)
+
 -Existen productos con ADU muy bajo pero alto inventario, señalando sobre-stock no detectado
 
 Gracias al modelo se pueden aplicar estrategias preventivas:
 
 -Detección temprana de productos que migrarán a AZUL o NEGRO antes de que el sobre-stock se acumule
+
 -Priorización de acciones de liquidación o promoción para productos con alta probabilidad de excedente
+
 -Reducción de pedidos innecesarios al identificar SKUs que ya tienen cobertura suficiente
 
 #### Reducción de pérdidas por quiebre de stock
@@ -86,7 +102,9 @@ Así mismo, el modelo permite identificar productos con alta probabilidad de cae
 Gracias a esto se pueden aplicar estrategias preventivas:
 
 -Reabastecimiento anticipado de productos que el modelo clasifica con alta probabilidad de ROJO
+
 -Priorización de órdenes de compra según urgencia predicha, no según reacción al faltante
+
 -Reducción de ventas perdidas por falta de inventario disponible
 
 #### Optimización del pronóstico de demanda (ADU)
@@ -94,7 +112,9 @@ Gracias a esto se pueden aplicar estrategias preventivas:
  Se incluye un análisis de validación del ADU que identifica:
 
 -**Alta variabilidad en ADU por SKU** — recomienda suavizado estacional del pronóstico
+
 -**Días de inventario promedio altos** — el ADU podría estar subestimado, generando sobre-stock
+
 -**Inconsistencias ADU vs Inventario** — productos con demanda baja y stock alto (o viceversa)
 
 Corregir estas inconsistencias mejora la precisión de los topes de buffer y reduce el costo asociado a decisiones erróneas de reposición.
@@ -138,11 +158,17 @@ Se utilizó un enfoque de clasificación multiclase supervisada con la siguiente
 ### Análisis Exploratorio de Datos (EDA)
 Distribución del target: El dataset presenta desbalanceo de clases:
 Clase	Proporción
+
 AMARILLO	44.1%
+
 VERDE	25.6%
+
 AZUL	25.2%
+
 ROJO	4.9%
+
 NEGRO	0.3%
+
 Las clases ROJO y NEGRO son minoritarias, lo que se tiene en cuenta con un split estratificado.
 
 **Matriz de correlación**: Se analizó la correlación entre las 16 variables numéricas para detectar multicolinealidad.
@@ -153,11 +179,17 @@ Se calculó la correlación absoluta de cada feature numérica con el target cod
 Variable	Correlación con Target
 
 Sobre_Stock_Unid	0.719
+
 Costo_Sobre_Stock	0.603
+
 Unidades_a_Enviar	0.425
+
 ADU	0.350
+
 Tope_Rojo	0.337
+
 Tope_Amarillo	0.336
+
 Tope_Verde	0.336
 
 Ninguna superó el umbral de 0.95, por lo que no se detectó leakage severo.
@@ -167,6 +199,7 @@ Ninguna superó el umbral de 0.95, por lo que no se detectó leakage severo.
 Estrategia: Split estratificado (stratify=y) para mantener la distribución de clases.
 
 Proporción: 80% entrenamiento (36,000) / 20% test (9,000).
+
 Semilla: random_state=42 para reproducibilidad.
 
 ## 6. Modelo: Random Forest Classifier
@@ -204,7 +237,9 @@ Una visualización de barras horizontales con colores representativos de cada zo
 
 ## 7. Visualizaciones
 
-Se desarrolló un dashboard en Databricks Dashboard para visualizar los resultados generados por el modelo
+Se desarrolló un dashboard en Databricks Dashboard para visualizar los resultados generados por el modelo 
+
+Link de las visualizaciones https://dbc-76dc07b7-aa46.cloud.databricks.com/dashboardsv3/01f1aeaf6c1c14da8dd11b074e42a208/published?o=7474658879432411
 
 <img width="1697" height="440" alt="image" src="https://github.com/user-attachments/assets/09f5abfb-8f78-45a2-90e8-f81c22e3b36d" />
 
