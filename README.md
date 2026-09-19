@@ -1,6 +1,6 @@
 # Trabajo Final Big Data/ Luis Hernando Galvis Trujillo - Luis Mauricio Rivera Ruiz
 
-## Caso del negocio
+## 1. Caso del negocio
 
 Una empresa de esencias naturales cuenta con treinta puntos de venta en el país y en cada una de las tiendas dispone de 1500 productos. Semanalmente, la empresa distribuye en camiones los productos desde sus bodegas a cada uno de los 30 puntos de venta.
 
@@ -45,7 +45,7 @@ Detección temprana de productos que migrarán a zonas críticas (ROJO) o excede
 Priorización de órdenes de reabastecimiento basada en predicción, no en reacción.
 Sistema de predicción para productos nuevos que aún no tienen historial de clasificación.
 
-## Análisis Económico
+## 2. Análisis Económico
 La implementación de un modelo de clasificación automática del Color de Buffer DDMRP genera beneficios económicos directos en la gestión de inventario y permite una gestión anticipada del riesgo de stock.
 
 ### Reducción de costos operativos
@@ -104,7 +104,7 @@ Impacto financiero resumido
 <img width="796" height="245" alt="image" src="https://github.com/user-attachments/assets/f5737d9d-606b-4dea-bb62-e9f2296070bf" />
 
 
-## Arquitectura Propuesta
+## 3. Arquitectura Propuesta
 
 El pipeline sigue una arquitectura medallón en Databricks:
 
@@ -118,7 +118,7 @@ El pipeline sigue una arquitectura medallón en Databricks:
 
 <img width="572" height="366" alt="image" src="https://github.com/user-attachments/assets/191b0b64-3a5c-41ce-8de1-28998440328a" />
 
-## Pipeline de Ingesta de Datos
+## 4. Pipeline de Ingesta de Datos
 
 ### Flujo de datos
 
@@ -128,7 +128,7 @@ El pipeline sigue una arquitectura medallón en Databricks:
 
 <img width="681" height="561" alt="image" src="https://github.com/user-attachments/assets/74c0d7d9-f4b4-4c5e-ac5c-fb4ac616f2d0" />
 
-## Modelo de Ciencia de Datos Aplicado
+## 5. Modelo de Ciencia de Datos Aplicado
 
 ### Enfoque
 Se utilizó un enfoque de clasificación multiclase supervisada con la siguiente metodología CRISP-DM adaptada:
@@ -167,7 +167,7 @@ Estrategia: Split estratificado (stratify=y) para mantener la distribución de c
 Proporción: 80% entrenamiento (36,000) / 20% test (9,000).
 Semilla: random_state=42 para reproducibilidad.
 
-## Modelo: Random Forest Classifier
+## 6. Modelo: Random Forest Classifier
 ### Hiperparámetros:
 
 <img width="295" height="227" alt="image" src="https://github.com/user-attachments/assets/21359560-e8a8-4e99-9cd9-5e37b1fbf53f" />
@@ -200,7 +200,7 @@ La clase predicha (Color de Buffer).
 Las probabilidades por clase con su porcentaje.
 Una visualización de barras horizontales con colores representativos de cada zona.
 
-## Visualizaciones
+## 7. Visualizaciones
 
 Se desarrolló un dashboard en Databricks Dashboard para visualizar los resultados generados por el modelo
 
