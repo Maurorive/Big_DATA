@@ -206,6 +206,8 @@ Se desarrolló un dashboard en Databricks Dashboard para visualizar los resultad
 
 <img width="1697" height="440" alt="image" src="https://github.com/user-attachments/assets/09f5abfb-8f78-45a2-90e8-f81c22e3b36d" />
 
+<img width="1312" height="457" alt="image" src="https://github.com/user-attachments/assets/44c30473-9dcf-4dc5-982d-ad97cf31bb6c" />
+
 ### Buffer Color Distribution (Gráfica de Pastel)
 Muestra la distribución proporcional de los 5 estados de buffer DDMRP en todo el inventario
 
